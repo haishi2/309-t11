@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: `https://${FRONTEND_URL}`,
     credentials: true,
   })
 );
