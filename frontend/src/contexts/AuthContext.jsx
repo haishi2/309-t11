@@ -15,7 +15,6 @@ const AuthContext = createContext(null);
  *     2. the user just logged out.
  */
 export const AuthProvider = ({ children }) => {
-  console.log(BACKEND_URL);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
@@ -26,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
       } else {
         try {
-          const userFetch = await fetch(`${BACKEND_URL}/user/me`, {
+          const userFetch = await fetch(`$https://{BACKEND_URL}/user/me`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -64,7 +63,7 @@ export const AuthProvider = ({ children }) => {
    * @returns {string} - Upon failure, Returns an error message.
    */
   const login = async (username, password) => {
-    const response = await fetch(`${BACKEND_URL}/login`, {
+    const response = await fetch(`https://${BACKEND_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +80,7 @@ export const AuthProvider = ({ children }) => {
     const data = await response.json();
     localStorage.setItem("token", data.token);
 
-    const userFetch = await fetch(`${BACKEND_URL}/user/me`, {
+    const userFetch = await fetch(`https://${BACKEND_URL}/user/me`, {
       headers: {
         Authorization: `Bearer ${data.token}`,
       },
@@ -102,7 +101,7 @@ export const AuthProvider = ({ children }) => {
    * @returns {string} - Upon failure, returns an error message.
    */
   const register = async (userData) => {
-    const response = await fetch(`${BACKEND_URL}/register`, {
+    const response = await fetch(`https://${BACKEND_URL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
