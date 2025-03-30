@@ -15,6 +15,7 @@ const AuthContext = createContext(null);
  *     2. the user just logged out.
  */
 export const AuthProvider = ({ children }) => {
+  console.log(BACKEND_URL);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
