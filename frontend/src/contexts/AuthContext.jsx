@@ -71,13 +71,12 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({ username, password }),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      response.json().then((data) => {
-        return data.message;
-      });
+      return data.message;
     }
 
-    const data = await response.json();
     localStorage.setItem("token", data.token);
 
     const userFetch = await fetch(`https://${BACKEND_URL}/user/me`, {
@@ -110,7 +109,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     if (!response.ok) {
-      response.json().then((data) => {
+      return response.json().then((data) => {
         return data.message;
       });
     }
