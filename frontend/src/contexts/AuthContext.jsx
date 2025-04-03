@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
       } else {
         try {
-          const userFetch = await fetch(`$https://${BACKEND_URL}/user/me`, {
+          const userFetch = await fetch(`https://${BACKEND_URL}/user/me`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
