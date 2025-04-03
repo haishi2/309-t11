@@ -72,8 +72,8 @@ export const AuthProvider = ({ children }) => {
     });
 
     if (!response.ok) {
-      return response.json().then((data) => {
-        throw new Error(data.message);
+      response.json().then((data) => {
+        return data.message;
       });
     }
 
@@ -110,8 +110,8 @@ export const AuthProvider = ({ children }) => {
     });
 
     if (!response.ok) {
-      return response.json().then((data) => {
-        throw new Error(data.message);
+      response.json().then((data) => {
+        return data.message;
       });
     }
 
